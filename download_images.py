@@ -41,7 +41,7 @@ def download_images(dir, images):
             pass
 
 query = "HKUST"
-secret_key = "2572fc4584825b70054e8118707de9669fff6600b03a02d08cfe88021cb09f70"
+secret_key = "<secret-key>"
 
 params = {
   "q": query,
