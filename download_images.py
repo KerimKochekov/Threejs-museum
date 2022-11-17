@@ -4,6 +4,7 @@ import shutil
 from tqdm import tqdm
 import glob
 import os
+import sys
 
 class GoogleImage:
     def __init__(self, url, title, width, height):
@@ -40,8 +41,18 @@ def download_images(dir, images):
         except:
             pass
 
-query = "HKUST"
-secret_key = "<secret-key>"
+assert len(sys.argv) > 2, "Please provide required inputs"
+# python3 download_images.py <directory> <query> [query can be several words]
+# Example: python3 download_images.py bin Hello world
+
+directory = sys.argv[1]
+query = ''
+for i in range(2, len(sys.argv)):
+    if len(query) > 0:
+        query += ' '
+    query += sys.argv[i]
+
+secret_key = '<secret_key>'    
 
 params = {
   "q": query,
@@ -64,4 +75,4 @@ for i in range(len(results["images_results"])):
     except:
         pass
 
-download_images('bin1', result_images)
+download_images(directory, result_images)
