@@ -3,3 +3,8 @@ Goal to have an open world game of dynamic museum or gallery. The insights of fr
 
 ### Download images from Google using API
 Used https://serpapi.com/images-results to download images to the local machine.
+
+### How to run "download_images.py"?
+```
+$ python3 download_images.py <directory> <query> [query can be several words]
+```
