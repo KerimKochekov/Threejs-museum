@@ -1,0 +1,128 @@
+body {
+    background-color: white;
+}
+.header {
+   overflow: hidden;
+   background-color: #fbefd4;
+   padding: 20px 10px;
+   font-family: helvetica;
+   color: #f39c12;
+}
+
+
+
+
+.footer {
+    
+    background-color: #fbefd4;
+    padding: 20px 10px;
+    color:#3498db;
+    font-family: fantasy;
+    text-align: center;
+    padding: 30px;
+    line-height: 2;
+}
+.controls {
+    padding: 10px;
+    margin: 10px;
+    min-height:100px;
+    border-color: green;
+    border-width: 1px;
+    border-style:solid;
+}
+
+.controls button {
+    background-color: #4CAFFF;
+    border:none;
+    color:white;
+    margin:10px;
+    padding: 10px 35px;
+    font-size:18px;
+    border-radius: 8px;
+    box-shadow: 2px 2px gray;
+    transition: 0.3s;
+}
+
+
+.controls button:hover {
+    
+    background-color: #4CA1FF;
+    box-shadow: 10px 10px gray;
+    border-radius: 10px;
+}
+
+/* For CheckBox*/
+.controls .ck {
+    
+    display:inline-block;
+    margin:10px;
+    padding: 10px 25px;
+    
+    cursor: pointer;
+    font-size:18px;
+    color:white;
+    background-color: #4CAFFF;
+    border-radius: 8px;
+    transition: 0.3s;
+}
+.controls .ck:hover {
+    background-color: #4CA1FF;
+    box-shadow: 10px 10px gray;
+    border-radius: 10px;
+}
+
+.controls .ck input {
+    height:15px;
+    color:blue;
+    width:15px;
+}
+
+
+canvas{
+    border-style:solid;
+    border-color: gray;
+    border-width: 1px;
+}
+
+
+/**Slider's CSS from w3schools.com*/
+.slidecontainer {
+    width: 100%; /* Width of the outside container */
+}
+
+/* The slider itself */
+.slider {
+    -webkit-appearance: none;  /* Override default CSS styles */
+    appearance: none;
+    width: 100%; /* Full-width */
+    height: 25px; /* Specified height */
+    background: #d3d3d3; /* Grey background */
+    outline: none; /* Remove outline */
+    opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
+    -webkit-transition: .2s; /* 0.2 seconds transition on hover */
+    transition: opacity .2s;
+}
+
+/* Mouse-over effects */
+.slider:hover {
+    opacity: 1; /* Fully shown on mouse-over */
+}
+
+/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */ 
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none; /* Override default look */
+    appearance: none;
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+.slider::-moz-range-thumb {
+    width: 25px; /* Set a specific slider handle width */
+    height: 25px; /* Slider handle height */
+    background: #4CAF50; /* Green background */
+    cursor: pointer; /* Cursor on hover */
+}
+
+

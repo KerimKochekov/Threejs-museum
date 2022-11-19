@@ -1,0 +1,25 @@
+<!--
+Author: Hitarth Singh & Kerim Kochekov
+Project: Ball on a Spring!
+
+Description: A 3D animated scene create using Three.js library.
+-->
+<html>
+	<head>
+		<title>Museum Imaginarium</title>
+        <!-- <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"> -->
+        <link rel="stylesheet" href="css/new_style.css">
+	</head>
+	<body onload="init()">
+        <canvas id="mainCanvas"></canvas>
+        <div id="error"></div>
+        <script src="https://threejs.org/build/three.js"></script>    
+        
+         <script src="js/TrackballControls.js"></script>
+        <!--- Following JS Files will create the Scene. We have put them in separate files to make the project neat! -->
+        <script src="js/PhotoFrame.js"></script>
+        <script src="js/Player.js"></script>
+        <script src="js/Room.js"></script>
+        <script src="js/museum.js"></script>   
+	</body>
+</html>
