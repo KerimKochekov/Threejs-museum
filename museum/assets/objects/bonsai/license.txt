@@ -1,0 +1,11 @@
+Model Information:
+* title:	Bonsai
+* source:	https://sketchfab.com/3d-models/bonsai-830745f712104f8eb9e910b0d6e5ea42
+* author:	Gajk.Mv (https://sketchfab.com/Gajk.Mv)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Bonsai" (https://sketchfab.com/3d-models/bonsai-830745f712104f8eb9e910b0d6e5ea42) by Gajk.Mv (https://sketchfab.com/Gajk.Mv) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

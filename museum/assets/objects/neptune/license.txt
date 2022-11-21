@@ -1,0 +1,11 @@
+Model Information:
+* title:	Neptune - Louvre Museum
+* source:	https://sketchfab.com/3d-models/neptune-louvre-museum-e091d1ff1d2b44fd88d113fccb5623aa
+* author:	Benjamin Bardou (https://sketchfab.com/meryon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Neptune - Louvre Museum" (https://sketchfab.com/3d-models/neptune-louvre-museum-e091d1ff1d2b44fd88d113fccb5623aa) by Benjamin Bardou (https://sketchfab.com/meryon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
