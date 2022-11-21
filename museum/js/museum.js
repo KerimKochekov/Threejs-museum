@@ -40,7 +40,28 @@ function onPointerMove( event ) {
 
 window.addEventListener( 'pointermove', onPointerMove );
     
+function findGetParameter(parameterName) {
+    var result = null,
+        tmp = [];
+    var items = location.search.substr(1).split("&");
+    for (var index = 0; index < items.length; index++) {
+        tmp = items[index].split("=");
+        if (tmp[0] === parameterName) result = decodeURIComponent(tmp[1]);
+    }
+    return result;
+}
+
+
+var query;
+
 function init() {
+    query = findGetParameter("name");
+    
+    if (query == ""){
+        query = "cats";
+    }
+    
+
     try {
         canvas = document.getElementById("mainCanvas");
         renderer = new THREE.WebGLRenderer({
@@ -69,8 +90,6 @@ function init() {
 
     addTrackballControls();
 
-    
-
 //    
     
     var ambient = new THREE.AmbientLight(0x444444)
@@ -81,6 +100,8 @@ function init() {
     animate();
 
 }
+
+
 
 function getSpotLight(position, targetObject = null){
     var spotLight = new THREE.SpotLight( 0xffffff );
@@ -118,6 +139,8 @@ function add_point(){
 }
 
 var grass;
+var photoframes;
+var images;
 /**
  * Function to create the scene. It is called just once to make the scene.
  */
@@ -164,6 +187,8 @@ function createScene(){
         scene.add(lightSphere);
     }
     
+    
+    
     var pointLight1 = new THREE.PointLight(0xffffff, 1, 100);
     var pos = [ROOM_WIDTH/4, ROOM_HEIGHT - 5, ROOM_LENGTH/2];
     set_position(pointLight1, pos);
@@ -172,6 +197,66 @@ function createScene(){
     scene.add(pointLight1);
     scene.add(pointLight1Sphere);
     
+    
+    // Let's add the PhotoFrames!
+    images = []; // list of 5 images {width: xx, height: xx, url: xx}
+    
+    getData(query);
+    
+    var IMAGE_SCALE = 200;
+    if (queryData.total == 0){
+        window.alert("No Image Found! Please try again!");
+        window.location.href = "home.html"
+        return;
+    }
+    
+    for (var i =0; i < 5; i++){
+        var im = queryData.hits[i];
+        images.push({
+                width: im.imageWidth,
+                height: im.imageHeight,
+                url: im.userImageURL
+            });
+    }
+    
+    
+    photoframes = {
+        Frame1:
+            {
+                    "width": images[0].width,
+                    "height": images[0].height,
+                    "position": [0,0,2],
+                    "rotation": [0,0,0],
+                    "url": images[0].url,
+                    "Object": null
+            },
+        Frame2 :
+            {
+                    "width": images[1].width,
+                    "height": images[1].height,
+                    "position": [-ROOM_WIDTH/2 + 2,0,ROOM_LENGTH/2],
+                    "rotation": [0,Math.PI/2,0],
+                    "url": images[1].url,
+                    "Object": null
+            },
+        
+          Frame3 :
+            {
+                    "width": images[2].width,
+                    "height": images[2].height,
+                    "position": [ROOM_WIDTH/2 - 1,0,ROOM_LENGTH/2],
+                    "rotation":  [0,Math.PI/2,0],
+                    "url": images[2].url,
+                    "Object": null
+            },
+    }
+    
+    for (var ph_name in photoframes){
+        var ph = photoframes[ph_name];
+        var ph_ob = new PhotoFrame(ph.width/IMAGE_SCALE, ph.height/IMAGE_SCALE, ph.position, ph.rotation, ph.url);
+        ph.Object = ph_ob;
+        scene.add(ph_ob.object);
+    }
 
 //    scene.add(player.arrow_object);
     window.addEventListener(
