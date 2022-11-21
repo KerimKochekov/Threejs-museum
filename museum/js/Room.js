@@ -164,7 +164,41 @@ class Room {
             this.objects.push(wall_object);
             this.object.add(wall_object.object);
         }
-        
+            this.decorations = {
+            "Philopoemen": {
+                "scale": 0.04,
+                "path": './objects/philopoemen/scene.gltf',
+                "position": [27, -8, 50],
+                "rotation": [Math.PI/2, Math.PI, -Math.PI/2],
+                "tmp": null
+            },
+            "Neptune": {
+                "scale": 1,
+                "path": './objects/neptune/scene.gltf',
+                "position": [5, -10, 10],
+                "rotation": [-Math.PI/2, 0, Math.PI/2],
+                "tmp": null
+            },
+            "Bench": {
+                "scale": 0.08,
+                "path": './objects/bench/scene.gltf',
+                "position": [-15, -9, 40],
+                "rotation": [Math.PI/2,Math.PI,Math.PI/2],
+                "tmp": null
+            },
+            "Bonsai": {
+                "scale": 0.1,
+                "path": './objects/bonsai/scene.gltf',
+                "position": [-26,-9,68],
+                "rotation": [Math.PI/2,Math.PI,0],
+                "tmp": null
+            }
+        };
+        for (var decoration_name in this.decorations){
+            var decoration = this.decorations[decoration_name];
+            var main_object = load_object(decoration);
+            this.object.add(main_object);
+        }
         recompute_all_bounding_boxes(this);
 
     }
