@@ -197,6 +197,7 @@ class Room {
         for (var decoration_name in this.decorations){
             var decoration = this.decorations[decoration_name];
             var main_object = load_object(decoration);
+            decoration.tmp = main_object;
             this.object.add(main_object);
         }
         recompute_all_bounding_boxes(this);

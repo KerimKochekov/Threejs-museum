@@ -10,8 +10,9 @@ var canvas, renderer, scene, camera, controls, room, points, player; //Global Va
 
 var raycaster, pointer, drop_sphere; 
 
-var cameraLight, pointLight, ambientLight, spotLight;
+var cameraLight, pointLight, ambientLight, spotLightList;
 
+spotLightList = [];
 var CM = 100; // CM is unit equal to 100 pixels. Basically it can be used for scaling the whole scene
 
 
@@ -22,6 +23,7 @@ var PLAYER_HEIGHT = 10;
 var CAMERA_START_POINT =  [ROOM_WIDTH/2 - 1, -ROOM_HEIGHT/2 + PLAYER_HEIGHT, 1.5*ROOM_LENGTH ];
 var START_CORNER = [ROOM_WIDTH/2, -ROOM_HEIGHT/2, ROOM_LENGTH];
 //[ROOM_WIDTH, -ROOM_HEIGHT+ PLAYER_HEIGHT , -ROOM_LENGTH/2 + 10];
+
 
 
 var INTIAL_DROP_POINT = CAMERA_START_POINT;
@@ -80,16 +82,38 @@ function init() {
 
 }
 
+function getSpotLight(position, targetObject = null){
+    var spotLight = new THREE.SpotLight( 0xffffff );
+    set_position(spotLight, position);
+    //spotLight.map = new THREE.TextureLoader().load( url );
+
+    spotLight.castShadow = true;
+
+    if (targetObject){
+        spotLight.target = targetObject;
+    }
+
+    spotLight.shadow.mapSize.width = 1024;
+    spotLight.shadow.mapSize.height = 1024;
+
+    spotLight.shadow.camera.near = 500;
+    spotLight.shadow.camera.far = 4000;
+    spotLight.shadow.camera.fov = 30;
+
+    return spotLight;
+}
+
 function animate() {
     requestAnimationFrame(animate);
     render();
 }
 
-function add_point(pos){
+function add_point(){
     var geometry = new THREE.SphereGeometry(1);
-    var material = new THREE.MeshBasicMaterial( { color: 0xf8f8f8, opacity: 0.7, transparent: true} );
+    var material = new THREE.MeshBasicMaterial( { color: 0xf8f8f8, opacity: 0.9, transparent: true} );
     var sphere = new THREE.Mesh( geometry, material );
-    set_position(sphere, pos);
+//    set_position(sphere, pos);
+    points.push(sphere);
     return sphere;
 }
 
@@ -105,14 +129,39 @@ function createScene(){
     player = new Player(camera, room);
     
     
-    drop_sphere = add_point([-1,-1,10]); // for showing a drop at the location of mouse
+    drop_sphere = add_point(); // for showing a drop at the location of mouse
     set_position(drop_sphere, INTIAL_DROP_POINT);
     set_position(camera, CAMERA_START_POINT);
-    scene.add(drop_sphere);
+//    scene.add(drop_sphere);
     
-    var start_sphere = add_point(START_CORNER);
-    scene.add(start_sphere);
+//    var start_sphere = add_point(START_CORNER);
+//    scene.add(start_sphere);
 
+    
+    // Lets add some spot lights for each object in the room
+    
+    for (var deco in room.decorations){
+        var ob = room.decorations[deco];
+        var light_position = [...ob.position]; // copy the posiiton
+        light_position[1] = ROOM_HEIGHT - 11;
+        light_position[2] += 5;
+        var lightSphere = add_point();
+        set_position(lightSphere, light_position);
+        var spotLight = getSpotLight(light_position, deco.tmp);
+        spotLight.intensity = 2;
+        spotLightList.push(spotLight);
+        scene.add(spotLight);
+        scene.add(lightSphere);
+    }
+    
+    var pointLight1 = new THREE.PointLight(0xffffff, 1, 100);
+    var pos = [ROOM_WIDTH/4, ROOM_HEIGHT - 5, ROOM_LENGTH/2];
+    set_position(pointLight1, pos);
+    pointLight1.intensity = 10;
+    var pointLight1Sphere =  add_point(pos);
+    scene.add(pointLight1);
+    scene.add(pointLight1Sphere);
+    
 
 //    scene.add(player.arrow_object);
     window.addEventListener(
