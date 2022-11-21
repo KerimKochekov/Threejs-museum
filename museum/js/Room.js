@@ -68,7 +68,7 @@ class Room {
         var grass_material = new THREE.MeshBasicMaterial( {map: loader.load('assets/grass-texture.jpeg', function ( texture ) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.offset.set( 0, 0 );
-    texture.repeat.set( 4, 4 )}), side: THREE.DoubleSide} );
+    texture.repeat.set( 20, 20 )}), side: THREE.DoubleSide} );
         
         
         this.walls = 

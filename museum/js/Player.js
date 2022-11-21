@@ -22,6 +22,7 @@ class Player {
 //        this.block_rotation = false;
         this.target_movement = null;
         this.target_y_rotation_step = null;
+        this.target_up_rotation_step = null;
         this.block_movement = false;
         this.total_num_steps = 30;
         this.current_step = 0;
@@ -47,6 +48,20 @@ class Player {
                 if (this.target_y_rotation_step){
                     camera.rotation.y += this.target_y_rotation_step;
                 }
+
+                if (this.target_up_rotation_step){
+                    if (camera.rotation.x < Math.PI/4 && camera.rotation.x > -Math.PI/4){
+                    camera.rotation.x += this.target_up_rotation_step;
+                    }
+
+                    else if (camera.rotation.x < -Math.PI/4 && this.target_up_rotation_step > 0){
+                        camera.rotation.x += this.target_up_rotation_step;
+                        }
+                    else if (camera.rotation.x > Math.PI/4 && this.target_up_rotation_step < 0){
+                            camera.rotation.x += this.target_up_rotation_step;
+                            }
+
+                }
                 }
             
             else{
@@ -64,19 +79,34 @@ class Player {
             this.target_y_rotation_step = back*this.angular_velocity/this.total_num_steps;
             this.block_movement = true;
         }
-//        camera.rotation.y += delta;
+
         this.forward = new THREE.Vector3( 0, 0, - 1 );
         var axis = new THREE.Vector3( 0, 1, 0 );
         var angle = camera.rotation.y;
         this.forward.applyAxisAngle(axis, angle);
-        this.update_arrow();
-        
+        // this.update_arrow();
+
         if (!bool){
             // stop the rotation
             this.target_y_rotation_step = null;
             this.block_movement = false;
         }
     }
+
+    
+    rotate_up(bool, back = 1){
+        if (bool && !this.block_movement){
+            this.target_up_rotation_step = back*this.angular_velocity/this.total_num_steps;
+            this.block_movement = true;
+        }
+
+        if (!bool){
+            // stop the rotation
+            this.target_up_rotation_step = null;
+            this.block_movement = false;
+        }
+    }
+
     
     move_forward(bool, back=1){
      // create a copy of forward vector

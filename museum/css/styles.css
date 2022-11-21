@@ -1,0 +1,73 @@
+body {
+  height: 100vh;
+  background: linear-gradient(#333, white) no-repeat;
+}
+
+#fname {
+  position: relative;
+  bottom: 85px;
+    font-size:24px;
+}
+
+#startScreen {
+  margin: auto;
+  margin-top: 50px;
+  position: relative;
+  width: 1000px;
+  height: 800px;
+  background-color: whitesmoke;
+  color: #333;
+  text-align: center;
+  border: 0px solid;
+  border-radius: 10px;
+  box-shadow: 0 1px 32px white;
+  transform: rotate(0) scale(0);
+  animation: boom 1s linear;
+  animation-fill-mode: forwards;
+}
+
+img {  
+  position: relative;
+  bottom: 70px;
+width: 550px;  
+height: 350px;  
+}  
+
+@keyframes boom {
+  100% {
+    transform: rotate(1080deg) scale(1);
+  }
+}
+
+#startScreen div {
+  height: 30%;
+}
+
+#startScreen h1 {
+  position:absolute;
+  width: 100%;
+  margin-top: 100px;
+  color: #222;
+  font-size: 60px;
+  text-shadow: 0 1px 2px;
+  animation: pulse 6s linear infinite;
+}
+
+#startScreen p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+#startScreen span {
+  position: relative;
+  font-size: 18px;
+  animation: up 2s linear infinite;
+  animation-delay: 3s;
+}
+
+#gameOn {
+  font-size: 100px;
+  text-align: center;
+  text-shadow: 0 2px 0 limegreen, 0 1px 64px white;
+  animation: pulse 1.5s linear infinite;
+}

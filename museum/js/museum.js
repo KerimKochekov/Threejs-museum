@@ -215,7 +215,7 @@ function createScene(){
         images.push({
                 width: im.imageWidth,
                 height: im.imageHeight,
-                url: im.userImageURL
+                url: im.webformatURL || im.userImageURL
             });
     }
     
@@ -258,6 +258,33 @@ function createScene(){
         scene.add(ph_ob.object);
     }
 
+    // add our names
+
+//     const floader = new THREE.FontLoader();
+//     var textgeo ;
+
+//     floader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
+
+// 	textgeo = new THREE.TextGeometry( 'Kerim & Hitarth Museum', {
+// 		font: font,
+// 		size: 80,
+// 		height: 5,
+// 		curveSegments: 12,
+// 		bevelEnabled: true,
+// 		bevelThickness: 10,
+// 		bevelSize: 8,
+// 		bevelOffset: 0,
+// 		bevelSegments: 5
+// 	} );
+// } );
+
+// var  textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+// var  text = new THREE.Mesh(textgeo , textMaterial);
+
+// scene.add(text);
+
+
+
 //    scene.add(player.arrow_object);
     window.addEventListener(
         "keydown", (event) => {
@@ -282,6 +309,20 @@ function createScene(){
                 player.move_forward(true, -1);
                 return;
             }
+
+            if (event.isComposing || event.keyCode === 85) {
+                //                console.log("U Key");
+                                player.rotate_up(true, 1);
+                                return;
+            }
+
+            if (event.isComposing || event.keyCode === 74) {
+                //                console.log("J Key");
+                                player.rotate_up(true, -1);
+                                return;
+                }
+
+                                        
     }
     );
     
@@ -309,6 +350,21 @@ function createScene(){
                 player.move_forward(false);
                 return;
             }
+
+            
+            if (event.isComposing || event.keyCode === 85) {
+                //                console.log("U Key");
+                                player.rotate_up(false);
+                                return;
+            }
+
+            if (event.isComposing || event.keyCode === 74) {
+                //                console.log("J Key");
+                                player.rotate_up(false);
+                                return;
+                }
+
+
     });
     
     
