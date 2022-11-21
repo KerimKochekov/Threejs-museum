@@ -18,7 +18,7 @@ function set_rotation(object, rotation){
     object.rotation.z = rotation[2];
 }
 
-var DOOR_SIZE = 10;
+var DOOR_SIZE = 20;
 class Wall {
     constructor(width, height, position = [0,0,0], rotation = [0,0,0], material = null, windows = null){
         this.object = new THREE.Object3D();
@@ -77,7 +77,7 @@ class Room {
                    "name" : "Grass",
                     "width": 100,
                     "height": 100,
-                    "position": [0,-ROOM_HEIGHT/2-0.1,0],
+                    "position": [0,-ROOM_HEIGHT/2-0.1, ROOM_LENGTH/2],
                     "rotation": [Math.PI/2,0,0],
                     "material": grass_material,
                     "Wall": null
@@ -94,9 +94,9 @@ class Room {
                 
                 "Back": {
                     "name" : "Front",
-                    "width": width,
+                    "width": width - DOOR_SIZE/2,
                     "height": height,
-                    "position": [0,0,length],
+                    "position": [-DOOR_SIZE/4,0,length],
                     "rotation": [0,0,0],
                     "material": wall_material,
                     "Wall": null
@@ -145,15 +145,15 @@ class Room {
                     "Wall": null
                 }, 
             
-//                "Ceiling": {
-//                    "name" : "Ceiling",
-//                    "width": width,
-//                    "height": length,
-//                    "position": [0,height/2,length/2],
-//                    "rotation": [Math.PI/2,0,0],
-//                    "material": ceiling_material,
-//                    "Wall": null
-//                }, 
+               "Ceiling": {
+                   "name" : "Ceiling",
+                   "width": width,
+                   "height": length,
+                   "position": [0,height/2,length/2],
+                   "rotation": [Math.PI/2,0,0],
+                   "material": ceiling_material,
+                   "Wall": null
+               }, 
         };
     
         for (var wall_name in this.walls){
@@ -168,28 +168,28 @@ class Room {
             "Philopoemen": {
                 "scale": 0.04,
                 "path": './objects/philopoemen/scene.gltf',
-                "position": [27, -8, 50],
-                "rotation": [Math.PI/2, Math.PI, -Math.PI/2],
+                "position": [5, -8, 60],
+                "rotation": [Math.PI/2, -Math.PI, Math.PI/2],
                 "tmp": null
             },
             "Neptune": {
                 "scale": 1,
                 "path": './objects/neptune/scene.gltf',
-                "position": [5, -10, 10],
+                "position": [25, -10, 9],
                 "rotation": [-Math.PI/2, 0, Math.PI/2],
                 "tmp": null
             },
             "Bench": {
                 "scale": 0.08,
                 "path": './objects/bench/scene.gltf',
-                "position": [-15, -9, 40],
+                "position": [-15, -10, 40],
                 "rotation": [Math.PI/2,Math.PI,Math.PI/2],
                 "tmp": null
             },
             "Bonsai": {
                 "scale": 0.1,
                 "path": './objects/bonsai/scene.gltf',
-                "position": [-26,-9,68],
+                "position": [-25,-10,0],
                 "rotation": [Math.PI/2,Math.PI,0],
                 "tmp": null
             }
@@ -204,7 +204,7 @@ class Room {
     }
     
     inside_solid(vec){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             var box = this.bounding_boxes[i];
             if (box.containsPoint(vec)){
                 return true;
@@ -214,7 +214,7 @@ class Room {
     }
     
     ray_intersects(ray){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             
             var box = this.bounding_boxes[i];
             if (ray.intersectsBox(box)){
@@ -225,7 +225,7 @@ class Room {
     }
     
     triangle_intersects(triangle){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             console.log("Checking box " + String(i));
             var box = this.bounding_boxes[i];
             if (box.intersectsTriangle(triangle)){

@@ -9,8 +9,8 @@
 
 class Player {
     constructor(camera, room){
-        this.angular_velocity = 2;
-        this.forward_velocity = 10;
+        this.angular_velocity = 3;
+        this.forward_velocity = 30;
         this.camera = camera;
         this.room = room;
         this.arrow_object = new THREE.ArrowHelper();
@@ -82,17 +82,17 @@ class Player {
      // create a copy of forward vector
      var vector = this.forward.clone();
      if (bool && !this.block_movement){
-         // first check if the movement is possible or not
-        var final_location = vector.clone().multiplyScalar(1*back*this.forward_velocity).add(camera.position);
+//          // first check if the movement is possible or not
+//         var final_location = vector.clone().multiplyScalar(1*back*this.forward_velocity).add(camera.position);
          
-//         set_position(drop_sphere, [final_location.x, final_location.y, final_location.z]);
+// //         set_position(drop_sphere, [final_location.x, final_location.y, final_location.z]);
          
-         var triangle = new THREE.Triangle(camera.position, final_location, camera.position); // create a triangle to use intersectTriangle and check if movement is possible
+//          var triangle = new THREE.Triangle(camera.position, final_location, camera.position); // create a triangle to use intersectTriangle and check if movement is possible
          
-         if (this.room.triangle_intersects(triangle)) {
-             console.log("Debug: Can't move the player/camera.")
-             return;
-         }
+//          if (this.room.triangle_intersects(triangle)) {
+//              console.log("Debug: Can't move the player/camera.")
+//              return;
+//          }
         
          // now set the target_movement_step
         this.target_movement_step = vector.clone().multiplyScalar(back*this.forward_velocity/this.total_num_steps);
