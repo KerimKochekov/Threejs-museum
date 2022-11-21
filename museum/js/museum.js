@@ -124,6 +124,16 @@ var grass;
 function createScene(){
     // renderer.setClearColorHex( 0xff0000, 0);
     const loader = new THREE.TextureLoader();
+    const background_loader = new THREE.CubeTextureLoader();
+    const texture = background_loader.load([
+        './assets/football/posx.jpg',
+        './assets/football/negx.jpg',
+        './assets/football/posy.jpg',
+        './assets/football/negy.jpg',
+        './assets/football/posz.jpg',
+        './assets/football/negz.jpg',
+    ]);
+    scene.background = texture;
     room = new Room(ROOM_LENGTH, ROOM_HEIGHT, ROOM_WIDTH);
     scene.add(room.object);
     player = new Player(camera, room);

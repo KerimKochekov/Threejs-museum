@@ -75,8 +75,8 @@ class Room {
             {
                 "Grass": {
                    "name" : "Grass",
-                    "width": 100,
-                    "height": 100,
+                    "width": 1000,
+                    "height": 1000,
                     "position": [0,-ROOM_HEIGHT/2-0.1, ROOM_LENGTH/2],
                     "rotation": [Math.PI/2,0,0],
                     "material": grass_material,
