@@ -1,7 +1,7 @@
 /**
     Author: Hitarth Singh & Kerim Kochekov
     Project: Museum Imaginarium
-    Description: Class for Room
+    Description: Class for Object (decoration) loader
 */
 
 "use strict"; //To use the strict mode of JS.
@@ -36,5 +36,4 @@ function load_object(decoration){
         main_object.add(objecto);
     });
     return main_object;
-    
 }
