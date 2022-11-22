@@ -3,7 +3,7 @@ Dynamic museum with three.js
 
 ## Museum Imaginarium ##
 
-The aim of the project is to have virtual museum game where the user can see portraits of anything they wish. 
+The aim of the project is to have virtual museum game where the user can see portraits of anything that they wish. 
 
 [Examples](http://threejs.org/) — [Documentation](http://threejs.org/docs/) — [Migrating](https://github.com/mrdoob/three.js/wiki/Migration) — [Help](http://stackoverflow.com/questions/tagged/three.js)
 
