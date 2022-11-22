@@ -19,5 +19,5 @@ Alternatively see [how to build the library yourself](https://github.com/mrdoob/
 ### Challenges ###
 My life
 
-### Screemshots ###
+### Screenshots ###
 <empty>
