@@ -20,4 +20,4 @@ Alternatively see [how to build the library yourself](https://github.com/mrdoob/
 My life
 
 ### Screenshots ###
-<empty>
+![](https://github.com/KerimKochekov/WebGL-Project/blob/main/assets/screenshots/0.PNG)
