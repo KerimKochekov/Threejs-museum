@@ -286,7 +286,18 @@ function createScene(){
                     "rotation":  [0,Math.PI/2,0],
                     "url": images[3].url,
                     "Object": null
-            }
+            },
+          Guide:
+          {
+                  "width": 330,
+                  "height": 205,
+                  "desired_width": 10,
+                  "desired_height": 5,
+                  "position": [15,0,110],
+                  "rotation": [0,Math.PI/4,0],
+                  "url": '../assets/guide.png',
+                  "Object": null
+          }
     }
     
     for (var ph_name in photoframes){
