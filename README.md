@@ -1,7 +1,7 @@
 Dynamic museum with three.js
 ========
 
-#### Museum Imaginarium ####
+## Museum Imaginarium ##
 
 The aim of the project is to have virtual museum game where the user can see portraits of anything they wish. 
 
@@ -18,3 +18,6 @@ Alternatively see [how to build the library yourself](https://github.com/mrdoob/
 
 ### Challenges ###
 My life
+
+### Screemshots ###
+<empty>
