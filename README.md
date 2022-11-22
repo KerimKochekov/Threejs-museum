@@ -7,7 +7,7 @@ The aim of the project is to have a virtual museum game to generate portraits on
 
 [Examples](http://threejs.org/) — [Documentation](http://threejs.org/docs/) — [Migrating](https://github.com/mrdoob/three.js/wiki/Migration) — [Help](http://stackoverflow.com/questions/tagged/three.js)
 
-### Usage ###
+### Usage of three.js in your HTML script###
 
 Download the [minified library](http://threejs.org/build/three.min.js) and include it in your html.
 Alternatively see [how to build the library yourself](https://github.com/mrdoob/three.js/wiki/build.py,-or-how-to-generate-a-compressed-Three.js-file).
