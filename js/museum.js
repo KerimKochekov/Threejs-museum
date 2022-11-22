@@ -174,17 +174,26 @@ function createScene(){
     // Lets add some spot lights for each object in the room
     
     for (var deco in room.decorations){
+        if (deco == "Bonsai" || deco == "Light")
+            continue;
         var ob = room.decorations[deco];
+        
         var light_position = [...ob.position]; // copy the posiiton
         light_position[1] = ROOM_HEIGHT - 11;
-        light_position[2] += 5;
+        if (deco == "Bench"){
+            light_position[1] -= 3.9;
+            light_position[2] += 3;
+        }
+        // light_position[2] += 8;
+
         var lightSphere = add_point();
         set_position(lightSphere, light_position);
-        var spotLight = getSpotLight(light_position, deco.tmp);
+        scene.add(lightSphere);
+
+        var spotLight = getSpotLight(light_position);
         spotLight.intensity = 2;
         spotLightList.push(spotLight);
         scene.add(spotLight);
-        scene.add(lightSphere);
     }
     
     
@@ -193,9 +202,10 @@ function createScene(){
     var pos = [ROOM_WIDTH/4, ROOM_HEIGHT - 5, ROOM_LENGTH/2];
     set_position(pointLight1, pos);
     pointLight1.intensity = 10;
-    var pointLight1Sphere =  add_point(pos);
     scene.add(pointLight1);
-    scene.add(pointLight1Sphere);
+
+    // var pointLight1Sphere =  add_point(pos);
+    // scene.add(pointLight1Sphere);
     
     
     // Let's add the PhotoFrames!
@@ -210,22 +220,35 @@ function createScene(){
         return;
     }
     
-    for (var i =0; i < 5; i++){
+    for (var i = 0; i < 5; i++){
         var im = queryData.hits[i];
         images.push({
                 width: im.imageWidth,
                 height: im.imageHeight,
-                url: im.webformatURL || im.userImageURL
+                url: im.webformatURL
             });
     }
     
     
-    photoframes = {
+    photoframes = { 
+        Frame0:
+            {
+                    "width": images[4].width,
+                    "height": images[4].height,
+                    "desired_width": 10,
+                    "desired_height": 15,
+                    "position": [-10,0,2],
+                    "rotation": [0,0,0],
+                    "url": images[4].url,
+                    "Object": null
+            },
         Frame1:
             {
                     "width": images[0].width,
                     "height": images[0].height,
-                    "position": [0,0,2],
+                    "desired_width": 10,
+                    "desired_height": 15,
+                    "position": [12,0,2],
                     "rotation": [0,0,0],
                     "url": images[0].url,
                     "Object": null
@@ -234,61 +257,54 @@ function createScene(){
             {
                     "width": images[1].width,
                     "height": images[1].height,
-                    "position": [-ROOM_WIDTH/2 + 2,0,ROOM_LENGTH/2],
+                    "desired_width": 30,
+                    "desired_height": 15,
+                    "position": [-ROOM_WIDTH/2 + 2,0,ROOM_LENGTH*0.35],
                     "rotation": [0,Math.PI/2,0],
                     "url": images[1].url,
                     "Object": null
             },
         
-          Frame3 :
+            Frame3 :
             {
                     "width": images[2].width,
                     "height": images[2].height,
-                    "position": [ROOM_WIDTH/2 - 1,0,ROOM_LENGTH/2],
-                    "rotation":  [0,Math.PI/2,0],
+                    "desired_width": 40,
+                    "desired_height": 15,
+                    "position": [-ROOM_WIDTH/2 + 2,0,ROOM_LENGTH*0.75],
+                    "rotation": [0,Math.PI/2,0],
                     "url": images[2].url,
                     "Object": null
             },
+          Frame4 :
+            {
+                    "width": images[3].width,
+                    "height": images[3].height,
+                    "desired_width": 40,
+                    "desired_height": 15,
+                    "position": [ROOM_WIDTH/2 - 1,0,ROOM_LENGTH/2],
+                    "rotation":  [0,Math.PI/2,0],
+                    "url": images[3].url,
+                    "Object": null
+            }
     }
     
     for (var ph_name in photoframes){
         var ph = photoframes[ph_name];
-        var ph_ob = new PhotoFrame(ph.width/IMAGE_SCALE, ph.height/IMAGE_SCALE, ph.position, ph.rotation, ph.url);
+        var ratio = Math.max(ph.width / ph.desired_width, ph.height / ph.desired_height);
+        var ph_ob = new PhotoFrame(ph.width / ratio, ph.height / ratio, ph.position, ph.rotation, ph.url);
         ph.Object = ph_ob;
         scene.add(ph_ob.object);
     }
-
-    // add our names
-
-//     const floader = new THREE.FontLoader();
-//     var textgeo ;
-
-//     floader.load( 'fonts/helvetiker_regular.typeface.json', function ( font ) {
-
-// 	textgeo = new THREE.TextGeometry( 'Kerim & Hitarth Museum', {
-// 		font: font,
-// 		size: 80,
-// 		height: 5,
-// 		curveSegments: 12,
-// 		bevelEnabled: true,
-// 		bevelThickness: 10,
-// 		bevelSize: 8,
-// 		bevelOffset: 0,
-// 		bevelSegments: 5
-// 	} );
-// } );
-
-// var  textMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-// var  text = new THREE.Mesh(textgeo , textMaterial);
-
-// scene.add(text);
-
-
 
 //    scene.add(player.arrow_object);
     window.addEventListener(
         "keydown", (event) => {
 //            console.log(event.keyCode);
+            if (event.isComposing || event.keyCode === 82) {
+                window.location.href = "index.html";
+                return;
+            }
             if (event.isComposing || event.keyCode === 37) {
 //                console.log("Left Key");
                 player.rotate_y(true);

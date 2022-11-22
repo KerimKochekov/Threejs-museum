@@ -1,3 +1,9 @@
+/**
+    Author: Hitarth Singh & Kerim Kochekov
+    Project: Museum Imaginarium
+    Description: Listening Enter key to start the game
+*/
+
 var input = document.getElementById("fname");
 
 input.addEventListener("keypress", function(event) {

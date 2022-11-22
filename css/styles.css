@@ -5,7 +5,7 @@ body {
 
 #fname {
   position: relative;
-  bottom: 85px;
+  bottom: 40px;
     font-size:24px;
 }
 
@@ -28,9 +28,10 @@ body {
 
 img {  
   position: relative;
-  bottom: 70px;
-width: 550px;  
-height: 350px;  
+  bottom: 5px;
+  width: 550px;  
+  height: 350px; 
+  border-radius: 20px; 
 }  
 
 @keyframes boom {
@@ -40,7 +41,7 @@ height: 350px;
 }
 
 #startScreen div {
-  height: 30%;
+  height: 25%;
 }
 
 #startScreen h1 {
@@ -51,6 +52,7 @@ height: 350px;
   font-size: 60px;
   text-shadow: 0 1px 2px;
   animation: pulse 6s linear infinite;
+  font-family: 'Amatic SC';
 }
 
 #startScreen p {

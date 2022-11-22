@@ -1,8 +1,7 @@
 <!--
-Author: Hitarth Singh & Kerim Kochekov
-Project: Ball on a Spring!
-
-Description: A 3D animated scene create using Three.js library.
+    Author: Hitarth Singh & Kerim Kochekov
+    Project: Museum Imaginarium
+    Description: Game itself
 -->
 <html>
 	<head>
@@ -13,9 +12,9 @@ Description: A 3D animated scene create using Three.js library.
 	<body onload="init()">
         <canvas id="mainCanvas"></canvas>
         <div id="error"></div>
+        
         <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
         <script src="https://threejs.org/build/three.js"></script>    
-        
         <script src="https://cdn.rawgit.com/mrdoob/three.js/master/examples/js/loaders/GLTFLoader.js"></script>
          <script src="js/TrackballControls.js"></script>
         <!--- Following JS Files will create the Scene. We have put them in separate files to make the project neat! -->
@@ -24,12 +23,10 @@ Description: A 3D animated scene create using Three.js library.
             
         function success_image(json){
             queryData = json;
-            
         }
-
         function getData(topic) { 
 
-        var url = "https://pixabay.com/api/?key=31499483-ffdf6f6e52b7d94d49106bf59&q="+ topic;
+        var url = "https://pixabay.com/api/?key=31499483-ffdf6f6e52b7d94d49106bf59&q="+ topic  + "&image_type=photo";
 
         $.ajax({
           dataType: "json",
@@ -42,13 +39,10 @@ Description: A 3D animated scene create using Three.js library.
         }            
             
     </script>
-        
         <script src="js/PhotoFrame.js"></script>
         <script src="js/Player.js"></script>
         <script src="js/ObjectLoader.js"></script>
         <script src="js/Room.js"></script>
         <script src="js/museum.js"></script>   
-        
-        
 	</body>
 </html>

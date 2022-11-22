@@ -10,7 +10,7 @@
 class Player {
     constructor(camera, room){
         this.angular_velocity = 3;
-        this.forward_velocity = 30;
+        this.forward_velocity = 15;
         this.camera = camera;
         this.room = room;
         this.arrow_object = new THREE.ArrowHelper();

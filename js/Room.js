@@ -18,7 +18,7 @@ function set_rotation(object, rotation){
     object.rotation.z = rotation[2];
 }
 
-var DOOR_SIZE = 10;
+var DOOR_SIZE = 20;
 class Wall {
     constructor(width, height, position = [0,0,0], rotation = [0,0,0], material = null, windows = null){
         this.object = new THREE.Object3D();
@@ -68,21 +68,20 @@ class Room {
         var grass_material = new THREE.MeshBasicMaterial( {map: loader.load('assets/grass-texture.jpeg', function ( texture ) {
     texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
     texture.offset.set( 0, 0 );
-    texture.repeat.set( 4, 4 )}), side: THREE.DoubleSide} );
+    texture.repeat.set( 20, 20 )}), side: THREE.DoubleSide} );
         
         
         this.walls = 
             {
                 "Grass": {
                    "name" : "Grass",
-                    "width": 500,
-                    "height": 500,
-                    "position": [0,-ROOM_HEIGHT/2-0.1,0],
+                    "width": 1000,
+                    "height": 1000,
+                    "position": [0,-ROOM_HEIGHT/2-0.1, ROOM_LENGTH/2],
                     "rotation": [Math.PI/2,0,0],
                     "material": grass_material,
                     "Wall": null
                 },
-            
                 "Front": {
                     "name" : "Back",
                     "width": width,
@@ -95,30 +94,19 @@ class Room {
                 
                 "Back": {
                     "name" : "Front",
-                    "width": width,
+                    "width": width - DOOR_SIZE/2,
                     "height": height,
-                    "position": [0,0,length],
+                    "position": [-DOOR_SIZE/4,0,length],
                     "rotation": [0,0,0],
                     "material": wall_material,
                     "Wall": null
                 }, 
                 
-                "Left1": {
-                    "name" : "Left1",
-                    "width": length/2,
+                "Left": {
+                    "name" : "Left",
+                    "width": length,
                     "height": height,
-                    "position": [-width/2,0,length/4],
-                    "rotation": [0,Math.PI/2,0],
-                    "material": wall_material,
-                    "Wall": null
-                    
-                }, 
-            
-                "Left2": {
-                    "name" : "Left2",
-                    "width": length/4,
-                    "height": height,
-                    "position": [-width/2,0,-length/4],
+                    "position": [-width/2,0,length/2],
                     "rotation": [0,Math.PI/2,0],
                     "material": wall_material,
                     "Wall": null
@@ -157,15 +145,15 @@ class Room {
                     "Wall": null
                 }, 
             
-                "Ceiling": {
-                    "name" : "Ceiling",
-                    "width": width,
-                    "height": length,
-                    "position": [0,height/2,length/2],
-                    "rotation": [Math.PI/2,0,0],
-                    "material": ceiling_material,
-                    "Wall": null
-                }, 
+               "Ceiling": {
+                   "name" : "Ceiling",
+                   "width": width,
+                   "height": length,
+                   "position": [0,height/2,length/2],
+                   "rotation": [Math.PI/2,0,0],
+                   "material": ceiling_material,
+                   "Wall": null
+               }, 
         };
     
         for (var wall_name in this.walls){
@@ -176,13 +164,55 @@ class Room {
             this.objects.push(wall_object);
             this.object.add(wall_object.object);
         }
-        
+            this.decorations = {
+            "Philopoemen": {
+                "scale": 0.04,
+                "path": './objects/philopoemen/scene.gltf',
+                "position": [5, -8, 60],
+                "rotation": [Math.PI/2, -Math.PI, Math.PI/2],
+                "tmp": null
+            },
+            "Neptune": {
+                "scale": 1,
+                "path": './objects/neptune/scene.gltf',
+                "position": [25, -10, 9],
+                "rotation": [-Math.PI/2, 0, Math.PI/2],
+                "tmp": null
+            },
+            "Bench": {
+                "scale": 0.08,
+                "path": './objects/bench/scene.gltf',
+                "position": [-15, -10, 40],
+                "rotation": [Math.PI/2,Math.PI,Math.PI/2],
+                "tmp": null
+            },
+            "Bonsai": {
+                "scale": 0.1,
+                "path": './objects/bonsai/scene.gltf',
+                "position": [-25,-10,0],
+                "rotation": [Math.PI/2,Math.PI,0],
+                "tmp": null
+            },
+            "Light": {
+                "scale": 0.008,
+                "path": './objects/light/scene.gltf',
+                "position": [-15,3.6,43],
+                "rotation": [Math.PI/2,Math.PI,0],
+                "tmp": null
+            }
+        };
+        for (var decoration_name in this.decorations){
+            var decoration = this.decorations[decoration_name];
+            var main_object = load_object(decoration);
+            decoration.tmp = main_object;
+            this.object.add(main_object);
+        }
         recompute_all_bounding_boxes(this);
 
     }
     
     inside_solid(vec){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             var box = this.bounding_boxes[i];
             if (box.containsPoint(vec)){
                 return true;
@@ -192,7 +222,7 @@ class Room {
     }
     
     ray_intersects(ray){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             
             var box = this.bounding_boxes[i];
             if (ray.intersectsBox(box)){
@@ -203,7 +233,7 @@ class Room {
     }
     
     triangle_intersects(triangle){
-        for (var i =0; i < this.bounding_boxes.length; i++){
+        for (var i = 0; i < this.bounding_boxes.length; i++){
             console.log("Checking box " + String(i));
             var box = this.bounding_boxes[i];
             if (box.intersectsTriangle(triangle)){

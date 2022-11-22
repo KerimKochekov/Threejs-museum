@@ -1,0 +1,11 @@
+Model Information:
+* title:	Люстра 2496-2P Favourite
+* source:	https://sketchfab.com/3d-models/2496-2p-favourite-8d7058c6946849949ac2c79c2e1ffa3c
+* author:	fedomo.ru (https://sketchfab.com/fedomo)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Люстра 2496-2P Favourite" (https://sketchfab.com/3d-models/2496-2p-favourite-8d7058c6946849949ac2c79c2e1ffa3c) by fedomo.ru (https://sketchfab.com/fedomo) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
