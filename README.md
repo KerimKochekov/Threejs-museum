@@ -21,3 +21,6 @@ My life
 
 ### Screenshots ###
 ![](https://github.com/KerimKochekov/WebGL-Project/blob/main/assets/screenshots/0.PNG)
+![](https://github.com/KerimKochekov/WebGL-Project/blob/main/assets/screenshots/1.PNG)
+![](https://github.com/KerimKochekov/WebGL-Project/blob/main/assets/screenshots/2.PNG)
+![](https://github.com/KerimKochekov/WebGL-Project/blob/main/assets/screenshots/3.PNG)
