@@ -1,4 +1,4 @@
-Dynamic museum with three.js
+Vritual-dynamic museum with three.js
 ========
 
 ## Museum Imaginarium ##
