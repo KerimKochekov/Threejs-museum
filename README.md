@@ -15,7 +15,14 @@ Alternatively see [how to build the library yourself](https://github.com/mrdoob/
 ```html
 <script src="js/three.min.js"></script>
 ```
-
+### How to run? ###
+- Run server on your local machine in the same directory with *./project/index.html* file.
+In my case, I was using the server by Python that listens 8000th port, you can create it with following command:
+```
+$ python3 -m http.server
+```
+And go to the [http://localhost:8000](http://localhost:8000/) from your browser to trigger *index.html* and start the game.
+  
 ### Challenges ###
 - We could not find a direct way to use Google API within Javascript, and it also had a very limited number of free requests. We wanted to use pure JavaScript so it can run on any machine without the need for a server.
 - We faced difficulty while implementing our First Person Camera module which allows the minion to move around. It was particularly challenging to make sure that the movement is smooth as we didn't use any library for these functions.
